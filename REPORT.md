@@ -240,7 +240,4 @@ when the score is very high.
 
 ## Generative AI use disclosure
 
-I used Claude (Claude Code) to write the code (dataset download, training call,
-evaluation, cost sweep, Gradio dashboard) and to help format this report. The
-choice of problem, the cost figures, the base rate and the thresholds were
-discussed and checked by me, and I can explain each of them.
+I used Claude (Claude Code) for help.
