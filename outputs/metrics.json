@@ -1,0 +1,167 @@
+{
+  "dataset": {
+    "workspace": "drone-vs-bird-4idpt",
+    "project": "drone-vs-bird-v3",
+    "version": 4,
+    "splits": {
+      "train": {
+        "images": 1896,
+        "instances": {
+          "Bird": 4257,
+          "Drone": 1746
+        },
+        "images_with": {
+          "Bird": 427,
+          "Drone": 1469
+        },
+        "median_box_area_pct": {
+          "Bird": 0.27,
+          "Drone": 0.53
+        },
+        "share_boxes_under_1pct": {
+          "Bird": 0.88,
+          "Drone": 0.71
+        }
+      },
+      "valid": {
+        "images": 379,
+        "instances": {
+          "Bird": 1270,
+          "Drone": 351
+        },
+        "images_with": {
+          "Bird": 87,
+          "Drone": 292
+        },
+        "median_box_area_pct": {
+          "Bird": 0.29,
+          "Drone": 0.48
+        },
+        "share_boxes_under_1pct": {
+          "Bird": 0.91,
+          "Drone": 0.74
+        }
+      },
+      "test": {
+        "images": 253,
+        "instances": {
+          "Bird": 615,
+          "Drone": 237
+        },
+        "images_with": {
+          "Bird": 59,
+          "Drone": 194
+        },
+        "median_box_area_pct": {
+          "Bird": 0.27,
+          "Drone": 0.41
+        },
+        "share_boxes_under_1pct": {
+          "Bird": 0.94,
+          "Drone": 0.76
+        }
+      }
+    }
+  },
+  "training": {
+    "model": "yolo11n",
+    "epochs": 3,
+    "imgsz": 416,
+    "batch": 16,
+    "device": "cpu"
+  },
+  "detection_test": {
+    "mAP50": 0.587,
+    "mAP50-95": 0.233,
+    "per_class": {
+      "Bird": {
+        "precision": 0.422,
+        "recall": 0.486,
+        "AP50": 0.383,
+        "AP50-95": 0.114
+      },
+      "Drone": {
+        "precision": 0.781,
+        "recall": 0.753,
+        "AP50": 0.79,
+        "AP50-95": 0.351
+      }
+    },
+    "confusion_matrix": {
+      "labels": [
+        "Bird",
+        "Drone",
+        "background"
+      ],
+      "rows_pred_cols_true": [
+        [
+          426,
+          124,
+          10196
+        ],
+        [
+          95,
+          107,
+          36356
+        ],
+        [
+          94,
+          6,
+          0
+        ]
+      ]
+    }
+  },
+  "costs": {
+    "FN": 60000,
+    "FP": 150,
+    "TP": 150,
+    "TN": 0,
+    "review": 0.6,
+    "base_rate": 0.002,
+    "cases_per_day": 1500,
+    "review_seconds": 60,
+    "max_review_share": 0.24
+  },
+  "chosen": {
+    "single_threshold": 0.23,
+    "low": 0.2,
+    "high": 0.4
+  },
+  "comparison_test": {
+    "do nothing / predict nothing": {
+      "cost_per_1000": 120000.0,
+      "review_share": 0.0,
+      "drone_recall": 0.0,
+      "bird_false_alarm": 0.0
+    },
+    "person checks everything": {
+      "cost_per_1000": 900.0,
+      "review_share": 1.0,
+      "drone_recall": 1.0,
+      "bird_false_alarm": 0.0
+    },
+    "COCO zero-shot alone (t=0.38)": {
+      "cost_per_1000": 106979.75,
+      "review_share": 0.0,
+      "drone_recall": 0.278,
+      "bird_false_alarm": 0.1356
+    },
+    "finetuned alone (t=0.23)": {
+      "cost_per_1000": 55566.36,
+      "review_share": 0.0,
+      "drone_recall": 0.835,
+      "bird_false_alarm": 0.2373
+    },
+    "finetuned + review band (0.2-0.4)": {
+      "cost_per_1000": 23489.95,
+      "review_share": 0.2547,
+      "drone_recall": 0.871,
+      "bird_false_alarm": 0.0508
+    }
+  },
+  "workload": {
+    "reviews_per_day": 382.0,
+    "review_hours_per_day": 6.37
+  }
+}
